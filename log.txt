@@ -14,6 +14,14 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
   v 文字列リテラルをワイド文字に、出力ストリームを wout にする
     v Linux で動作確認
     v Windows で動作確認
+  v Windows 版では 64bit/32bit と UNICODE/非UNICODE の組み合わせを試す
+    * mak.bat で 4通りの build* ディレクトリを作成し、cmake の引数を切
+      り替える
+    * CMakeLists.txt で UNICODE/非UNICODE を切り替え
+    * hello.cpp で _WIN64, UNICODE, _UNICODE の定義の有無と void* のサ
+      イズと argv の型を出力
+    * exe.bat で 4通りの build* ディレクトリを切り替える
+  o argv が char** のとき、引数の文字コードをダンプ
 
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している

@@ -1,6 +1,6 @@
 # .gitignore
-# Time-stamp: <2022-06-18 16:55:52 neige>
-/build/
+# Time-stamp: <2022-06-18 22:27:19 neige>
+/build*/
 secret/
 *~
 *.bak

@@ -1,5 +1,5 @@
 # <CMakeLists.txt> -*- coding: utf-8 -*-
-# Time-stamp: <2022-06-18 17:11:34 neige>
+# Time-stamp: <2022-06-18 21:40:40 neige>
 #
 # Project try-cpp-winlin
 # Copyright (C) 2022 neige
@@ -42,6 +42,10 @@ endif()
 # マップファイル生成
 #set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /MAP")
 #set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /MAP")
+
+if (${UNICODE})
+    add_compile_definitions(UNICODE;_UNICODE)
+endif()
 
 #add_compile_definitions(_CRT_RAND_S)
 
