@@ -2,8 +2,8 @@
 
 Windows, Linux 両方でビルト・実行できる C++ プログラムを作ってみる
 
-とりあえずの目標は、昔作った、以前は MS-DOS, UNIX, VOS3 で動作していたが、
-現在は 32bit Windows (Shift-JIS) で
+とりあえずの目標は、昔作った、以前は MS-DOS, MacOS, UNIX, VOS3 で動作していたが、
+現在は 32bit Windows (Shift-JIS) のみで
 アプリケーション組み込み用になっている Lisp インタプリタを、
 32bit Windows (Shift-JIS) でも動作させつつ Windows, Linux 両方で
 UNICODE 対応で 64bit でも動かしたいので、その基盤を整える。
