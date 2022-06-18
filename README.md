@@ -40,6 +40,10 @@ alias は ~/.bashrc から呼び出される ~/.bash_aliases で定義する
 
 変更した ~/.bash_aliases をすぐ反映したいときは source ~/.bash_aliases とする
 
+Emacs の M-x compile で mak を実行するには、
+.emacs 等に (setq shell-command-switch "-ic") を 追加し、
+bash のインタラクティブシェルを起動するよう指示する。
+
 
 ## ワイド文字、マルチバイト文字変換
 
