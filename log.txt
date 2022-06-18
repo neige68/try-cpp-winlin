@@ -21,7 +21,7 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
     * hello.cpp で _WIN64, UNICODE, _UNICODE の定義の有無と void* のサ
       イズと argv の型を出力
     * exe.bat で 4通りの build* ディレクトリを切り替える
-  o argv が char** のとき、引数の文字コードをダンプ
+  v argv が char** のとき、引数の文字コードをダンプ
 
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している

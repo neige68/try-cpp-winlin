@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-18 22:05:26 neige>
+// Time-stamp: <2022-06-18 22:38:56 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -11,6 +11,7 @@
 //
 
 // std c++
+#include <iomanip>
 #include <iostream>
 #include <locale>
 
@@ -42,6 +43,16 @@ int main(int argc, char** argv)
     wcout << L"_UNICODE が定義されています。" << endl;
 #endif
     wcout << L"typename(argv)=" << typeid(argv).name() << endl;
+    if (typeid(argv) == typeid(char**)) {
+        for (int i = 0; i < argc; i++) {
+            wcout << L"argv[" << i << L"]:";
+            for (int j = 0; argv[i][j]; j++) {
+                wcout << L' ' << setw(2) << setfill(L'0') << hex
+                      << (unsigned int)(unsigned char)(argv[i][j]);
+            }
+            wcout << endl;
+        }
+    }
     return 0;
 }
 
