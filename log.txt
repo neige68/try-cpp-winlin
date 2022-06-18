@@ -11,3 +11,23 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
     * コンパイラオプションに /utf-8 が必要。
     * CMakeLists.txt にて if (CMAKE_GENERATOR MATCHES "Visual Studio")
       で切り分けて CMAKE_CXX_FLAGS に "/utf-8" を追加。
+  w 文字列リテラルをワイド文字に、出力ストリームを wout にする
+    c Linux で動作確認
+    o Windows で動作確認
+
+o Copyright neige と neige68 が混在している。
+  * neige68 は github のアカウント名、名前としては neige で登録している
+  * Windows や Linux のアカウント名は neige
+    * ファイルの Time-stamp に入るのは neige になる
+  * git log すると
+    * github でのコミットは neige <89586482+neige68@users.noreply.github.com>
+    * Linux neige <neige@neige.nu>
+      * これは ~/.gitconfig または .git/config で設定
+    * Windows neige <neige@neige.nu>
+      * これは %HOMEDRIVE%%HOMEPATH%/.gitconfig または .git/config で設定
+  * github のアカウント neige の人は 2011 年登録以来活動してないような
+    のでどうでもいいかもしれない
+  * 確認箇所
+    * ~/.gitconfig
+    * .git/config
+    * ~/.emacs.d/init.el での展開

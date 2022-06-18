@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-18 17:12:44 neige>
+// Time-stamp: <2022-06-18 20:15:54 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -21,8 +21,8 @@ using namespace std;
 int main(int argc, char** argv)
 {
     locale::global(locale(""));
-    cout << "Hello, world." << endl;
-    cout << "みなさんこんにちは。" << endl;
+    wcout << L"Hello, world." << endl;
+    wcout << L"みなさんこんにちは。" << endl;
     return 0;
 }
 
