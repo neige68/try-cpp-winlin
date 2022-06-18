@@ -20,7 +20,10 @@ UNICODE 対応で 64bit でも動かしたいので、その基盤を整える�
 
 ## ソースコードのエンコーディング
 
-UTF-8 で大丈夫だと思う
+UTF-8 とする。
+VC ではコンパイルオプション /utf-8 オプションが必要となるので、
+CMakeLists.txt にて、CMAKE_GENERATOR に "Visual Studio" が含まれるときに、
+CMAKE_CXX_FLAGS それをに追加する。
 
 
 ## ビルドと実行のコマンドを共通化したい
