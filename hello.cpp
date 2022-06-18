@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-18 22:38:56 neige>
+// Time-stamp: <2022-06-18 22:58:05 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -29,29 +29,34 @@ int _tmain(int argc, TCHAR** argv)
 int main(int argc, char** argv)
 #endif
 {
-    locale::global(locale(""));
-    wcout << L"Hello, world." << endl;
-    wcout << L"みなさんこんにちは。" << endl;
+    try {
+        locale::global(locale(""));
+        wcout << L"Hello, world." << endl;
+        wcout << L"みなさんこんにちは。" << endl;
 #if defined(_WIN64)
-    wcout << L"_WIN64 が定義されています。" << endl;
+        wcout << L"_WIN64 が定義されています。" << endl;
 #endif
-    wcout << L"sizeof(void*)=" << sizeof(void*) << endl;
+        wcout << L"sizeof(void*)=" << sizeof(void*) << endl;
 #if defined(UNICODE)
-    wcout << L"UNICODE が定義されています。" << endl;
+        wcout << L"UNICODE が定義されています。" << endl;
 #endif
 #if defined(_UNICODE)
-    wcout << L"_UNICODE が定義されています。" << endl;
+        wcout << L"_UNICODE が定義されています。" << endl;
 #endif
-    wcout << L"typename(argv)=" << typeid(argv).name() << endl;
-    if (typeid(argv) == typeid(char**)) {
-        for (int i = 0; i < argc; i++) {
-            wcout << L"argv[" << i << L"]:";
-            for (int j = 0; argv[i][j]; j++) {
-                wcout << L' ' << setw(2) << setfill(L'0') << hex
-                      << (unsigned int)(unsigned char)(argv[i][j]);
+        wcout << L"typename(argv)=" << typeid(argv).name() << endl;
+        if (typeid(argv) == typeid(char**)) {
+            for (int i = 0; i < argc; i++) {
+                wcout << L"argv[" << i << L"]:";
+                for (int j = 0; argv[i][j]; j++) {
+                    wcout << L' ' << setw(2) << setfill(L'0') << hex
+                          << (unsigned int)(unsigned char)(argv[i][j]);
+                }
+                wcout << endl;
             }
-            wcout << endl;
         }
+    }
+    catch (const exception& x) {
+        cerr << x.what() << endl;
     }
     return 0;
 }
