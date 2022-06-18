@@ -1,13 +1,13 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-18 16:41:24 neige>
+// Time-stamp: <2022-06-18 17:12:44 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
 //
 // Note: hello
 //
-// Compiler: gcc 8.3
+// Compiler: gcc 8.3, VC 14.2
 //
 
 // std c++

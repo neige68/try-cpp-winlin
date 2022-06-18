@@ -1,8 +1,13 @@
 log.exe -*- coding: utf-8 -*-
 
 w hello.cpp - hello, world を書いてビルド・実行まで。
+  * 日本語を含める
   v Emacs から M-x shell では大丈夫だが、M-x compile では alias が定義
     されない。
     v (setq shell-command-switch "-ic") を .emacs 等に追加し、bash の
       インタラクティブシェルを起動するよう指示する。
-  v linux で動作確認
+  v Linux で動作確認
+  v Windows で動作確認
+    * コンパイラオプションに /utf-8 が必要。
+    * CMakeLists.txt にて if (CMAKE_GENERATOR MATCHES "Visual Studio")
+      で切り分けて CMAKE_CXX_FLAGS に "/utf-8" を追加。
