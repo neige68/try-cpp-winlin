@@ -11,9 +11,9 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
     * コンパイラオプションに /utf-8 が必要。
     * CMakeLists.txt にて if (CMAKE_GENERATOR MATCHES "Visual Studio")
       で切り分けて CMAKE_CXX_FLAGS に "/utf-8" を追加。
-  w 文字列リテラルをワイド文字に、出力ストリームを wout にする
-    c Linux で動作確認
-    o Windows で動作確認
+  v 文字列リテラルをワイド文字に、出力ストリームを wout にする
+    v Linux で動作確認
+    v Windows で動作確認
 
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している
