@@ -1,0 +1,8 @@
+log.exe -*- coding: utf-8 -*-
+
+w hello.cpp - hello, world を書いてビルド・実行まで。
+  v Emacs から M-x shell では大丈夫だが、M-x compile では alias が定義
+    されない。
+    v (setq shell-command-switch "-ic") を .emacs 等に追加し、bash の
+      インタラクティブシェルを起動するよう指示する。
+  v linux で動作確認
