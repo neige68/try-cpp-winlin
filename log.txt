@@ -23,10 +23,12 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
     * exe.bat で 4通りの build* ディレクトリを切り替える
   v argv が char** のとき、引数の文字コードをダンプ
   v 例外をキャッチして表示
-  o UTF-8 以外で試したい
+  v UTF-8 以外で試したい
     * GCP VM Debian GNU/Linux 10(buster) で用意されている日本語ロケー
       ルは、ja_JP.UTF-8 と ja_JP.eucjp のみ。切り替えは export
       LANG=ja_JP.eucjp でできる。
+    * Linux では main にて char** argv で、環境変数 LANG で指定された
+      エンコードで受け取れる。
 
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している

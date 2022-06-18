@@ -46,8 +46,7 @@ C++ 標準ライブラリの std::mbstowcs, std::wcstombs でできると思わ�
 ## コマンドライン引数
 
 Windows では _tmain で TCHAR** argv で受け取る。
-Linux では main にて char** argv で UTF-8 エンコードで渡されるのか。
-ロケール設定の影響は？
+Linux では main にて char** argv で、環境変数 LANG で指定されたエンコードで受け取る。
 
 
 ## 例外メッセージ
