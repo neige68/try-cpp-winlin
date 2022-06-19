@@ -44,6 +44,8 @@ Windows では 32bit/64bit 両方, Shift-JIS/UNICODE 両方とする。
 
 * Linux ではシェルスクリプト exe に hello とテスト用の任意の引数を指定する
 
+* 任意の引数の例: 🦆鴨かもｶﾓ
+
 
 ## 検討項目
 
