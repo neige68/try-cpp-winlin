@@ -66,14 +66,21 @@ Linux のワイド文字は UTF-32 であるとのことなので、
 UTF-8 を介すのが望ましい。
 
 
+## ターミナルの行の長さ
+
+pretty-print に必要なので取得したい。
+
+Linux ではライブラリ ncurses を使用。
+
+Windows では API GetConsoleScreenBufferInfo で取得できる。
+
+Windows の Emacs の shell から起動したプログラムではエラーとなるが、
+環境変数にシェル起動時の桁数が設定されているのでそれを取得する。
+
+
 ## 例外メッセージ
 
 C++ 標準ライブラリの std::exception のメッセージは std::string になっている。
 Boost Spirit X3 では wstring を UTF-8 決め打ちで string に変換していた記憶がある。
 そういうことがあると Windows (Shift-JIS) では
 UTF-8 と Shift-JIS が混在することにならないか危惧している。
-
-
-## ターミナルの行の長さ
-
-pretty-print に必要
