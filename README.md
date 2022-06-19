@@ -1,15 +1,18 @@
 # try-cpp-winlin
 
-Windows, Linux 両方でビルト・実行できる C++ プログラムを作ってみる
+Windows, Linux 両方でビルト・実行できるキャラクタベースの C++ プログラムを作ってみる
 
-とりあえずの目標は、昔作った、以前は MS-DOS, MacOS, UNIX, VOS3 で動作していたが、
-現在は 32bit Windows (Shift-JIS) のみで
-アプリケーション組み込み用になっている Lisp インタプリタを、
-32bit Windows (Shift-JIS) でも動作させつつ Windows, Linux 両方で
-UNICODE 対応で 64bit でも動かしたいので、その基盤を整える。
+## 目的
+
+昔作った Lisp インタプリタを、Windows 32bit/64bit, Linux 両方で
+UNICODE 対応で動かしたいので、その方法を確立する。
+それは以前は MS-DOS, MacOS, UNIX, VOS3 で動いていたが、
+現在は 32bit Windows の GUI アプリケーションの組み込み用になっている。
 
 
-## 使用するコンパイラとビルドツールとライブラリ
+## 対象
+
+### 使用するコンパイラとビルドツールとライブラリ
 
 * Windows では Visual Studio, 同梱の MSBuild
 
@@ -18,7 +21,16 @@ UNICODE 対応で 64bit でも動かしたいので、その基盤を整える�
 * 双方で CMake, Boost を使用
 
 
-## ソースコードのエンコーディング
+## 実際に使用しているバージョン
+
+* Windows: Windows 10, Visual Sutdio 2019 (14.2), CMake 3.19.2, Boost 1.74,
+
+* Linux: Debian GNU/Linux 10(buster), gcc 8.3, CMake 3.13.4, Boost 1.73, ncurses 6.1
+
+
+## 項目
+
+### ソースコードのエンコーディング(完了)
 
 UTF-8 とする。
 VC ではコンパイルオプション /utf-8 オプションが必要となるので、
@@ -26,7 +38,7 @@ CMakeLists.txt にて、CMAKE_GENERATOR に "Visual Studio" が含まれると�
 CMAKE_CXX_FLAGS にそれを追加する。
 
 
-## ビルドと実行のコマンドを共通化したい
+### ビルドと実行のコマンドを共通化(完了)
 
 * ビルドのコマンドは mak, 実行のコマンドは exe とする
 
@@ -45,13 +57,13 @@ Emacs の M-x compile で mak を実行するには、
 bash のインタラクティブシェルを起動するよう指示する。
 
 
-## コマンドライン引数
+### コマンドライン引数の処理(完了)
 
 Windows では _tmain で TCHAR** argv で受け取る。
 Linux では main にて char** argv で、環境変数 LANG で指定されたエンコードで受け取る。
 
 
-## ワイド文字、マルチバイト文字変換
+### ワイド文字、マルチバイト文字変換(完了)
 
 C++ 標準ライブラリの std::mbstowcs, std::wcstombs で行う。
 VC ではセキュリティ強化版 mbstowcs_s, wcstombs_s で行う。
@@ -60,13 +72,16 @@ VC ではセキュリティ強化版 mbstowcs_s, wcstombs_s で行う。
 グローバルロケールをデフォルトロケールに設定すると、
 素直に変換できる。
 
+const char* であろうと const wchar_t* であろうと、
+オーバロードした to_wstring 関数で std::wstring に変換して処理できるようにする。
+
 Windows のワイド文字は UTF-16 であり、
 Linux のワイド文字は UTF-32 であるとのことなので、
 ワイド文字のままデータ交換はできない。
 UTF-8 を介すのが望ましい。
 
 
-## ターミナルの行の長さ
+### ターミナルの行の長さの取得(完了)
 
 pretty-print に必要なので取得したい。
 
@@ -78,7 +93,7 @@ Windows の Emacs の shell から起動したプログラムではエラーと�
 環境変数にシェル起動時の桁数が設定されているのでそれを取得する。
 
 
-## 例外メッセージ
+### 例外メッセージ(未着手)
 
 C++ 標準ライブラリの std::exception のメッセージは std::string になっている。
 Boost Spirit X3 では wstring を UTF-8 決め打ちで string に変換していた記憶がある。
