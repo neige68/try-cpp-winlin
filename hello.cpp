@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-19 16:45:18 neige>
+// Time-stamp: <2022-06-19 16:49:08 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -79,7 +79,7 @@ int main(int argc, char** argv)
             dump(argv[i]);
             wcout << endl;
             wstring arg = to_wstring(argv[i]);
-            wcout << L"wchar_t:\t\t";
+            wcout << L"wchar_t:\t";
             dump(arg.c_str());
             wcout << endl;
         }
