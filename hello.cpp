@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-19 14:09:49 neige>
+// Time-stamp: <2022-06-19 16:45:18 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -11,9 +11,13 @@
 //
 
 // std c++
+#include <cstdlib>
+#include <cstring>
 #include <iomanip>
 #include <iostream>
 #include <locale>
+#include <string>
+#include <vector>
 
 #ifdef _WINDOWS
 #include <tchar.h>
@@ -35,6 +39,18 @@ void dump(const wchar_t* str)
     while (*str) 
         wcout << L' ' << setw(sizeof(wchar_t) * 2) << setfill(L'0') << hex
               << (unsigned int)(wchar_t)(*str++);
+}
+
+wstring to_wstring(const char* str)
+{
+    vector<wchar_t> buf(strlen(str) + 1);
+    mbstowcs(&buf.at(0), str, buf.size());
+    return wstring(&buf.at(0));
+}
+
+wstring to_wstring(const wchar_t* str)
+{
+    return wstring(str);
 }
 
 #ifdef _WINDOWS
@@ -59,8 +75,12 @@ int main(int argc, char** argv)
 #endif
         wcout << L"typename(argv)=" << typeid(argv).name() << endl;
         for (int i = 0; i < argc; i++) {
-            wcout << L"argv[" << i << L"]:";
+            wcout << L"argv[" << i << L"]:\t";
             dump(argv[i]);
+            wcout << endl;
+            wstring arg = to_wstring(argv[i]);
+            wcout << L"wchar_t:\t\t";
+            dump(arg.c_str());
             wcout << endl;
         }
     }

@@ -18,6 +18,8 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
     * mak.bat で 4通りの build* ディレクトリを作成し、cmake の引数を切
       り替える
     * CMakeLists.txt で UNICODE/非UNICODE を切り替え
+      * _UNICODE VC ランタイムで使用
+      * UNICODE Windows API で使用
     * hello.cpp で _WIN64, UNICODE, _UNICODE の定義の有無と void* のサ
       イズと argv の型を出力
     * exe.bat で 4通りの build* ディレクトリを切り替える
@@ -29,6 +31,8 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
       LANG=ja_JP.eucjp でできる。
     * Linux では main にて char** argv で、環境変数 LANG で指定された
       エンコードで受け取れる。
+  w argv を、wchar_t, UTF-8, Shift-JIS, EUC-JP などに変換してダンプ
+    w Linux で wchar_t に変換してダンプ
 
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している
@@ -46,3 +50,11 @@ o Copyright neige と neige68 が混在している。
     * ~/.gitconfig
     * .git/config
     * ~/.emacs.d/init.el での展開
+
+o (setq shell-command-switch "-ic") の設定だと、M-! などで以下のエラー
+  になる。実害は無い。
+----------
+bash: 端末プロセスグループを設定できません (-1): デバイスに対する不適切なioctlです
+bash: このシェルではジョブ制御が無効になっています
+----------
+  * ~/.bashrc 実行前
