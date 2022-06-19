@@ -37,7 +37,7 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
     v Windows で UTF-8, Shift-JIS(CP932), EUC-JP(CP20932) に変換して16進数出力
     v Linux で UTF-8, EUC-JP に変換して16進数出力
 
-w ターミナルの行の長さ
+v ターミナルの行の長さ
   * "termcols.h" GetTerminalCols
   v Linux
     * 大抵コマンド tput cols で取得できる。これは ncurses というライブ
