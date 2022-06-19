@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-18 22:58:05 neige>
+// Time-stamp: <2022-06-19 14:05:46 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -22,6 +22,13 @@
 using namespace std;
 
 //------------------------------------------------------------
+
+void dump(const char* str)
+{
+    while (*str) 
+        wcout << L' ' << setw(2) << setfill(L'0') << hex
+              << (unsigned int)(unsigned char)(*str++);
+}
 
 #ifdef _WINDOWS
 int _tmain(int argc, TCHAR** argv)
@@ -47,10 +54,7 @@ int main(int argc, char** argv)
         if (typeid(argv) == typeid(char**)) {
             for (int i = 0; i < argc; i++) {
                 wcout << L"argv[" << i << L"]:";
-                for (int j = 0; argv[i][j]; j++) {
-                    wcout << L' ' << setw(2) << setfill(L'0') << hex
-                          << (unsigned int)(unsigned char)(argv[i][j]);
-                }
+                dump(argv[i]);
                 wcout << endl;
             }
         }
