@@ -23,7 +23,7 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
     * hello.cpp で _WIN64, UNICODE, _UNICODE の定義の有無と void* のサ
       イズと argv の型を出力
     * exe.bat で 4通りの build* ディレクトリを切り替える
-  v argv が char** のとき、引数の文字コードをダンプ
+  v argv が char** のとき、引数の文字コードを16進数出力
   v 例外をキャッチして表示
   v UTF-8 以外で試したい
     * GCP VM Debian GNU/Linux 10(buster) で用意されている日本語ロケー
@@ -31,9 +31,10 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
       LANG=ja_JP.eucjp でできる。
     * Linux では main にて char** argv で、環境変数 LANG で指定された
       エンコードで受け取れる。
-  w argv を、wchar_t, UTF-8, Shift-JIS, EUC-JP などに変換してダンプ
-    v Linux で wchar_t に変換してダンプ
-    v Windows では mbstowcs に代わり mbstowcs_s を使用
+  w argv を、wchar_t, UTF-8, Shift-JIS, EUC-JP などに変換して16進数出力
+    v Linux で wchar_t に変換して16進数出力
+    v VC では mbstowcs に代わり mbstowcs_s を使用
+    w Windows で UTF-8, Shift-JIS(CP932), EUC-JP(CP20932) に変換して16進数出力
 
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している

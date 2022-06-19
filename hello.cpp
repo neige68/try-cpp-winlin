@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-19 17:28:11 neige>
+// Time-stamp: <2022-06-19 18:19:25 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <iostream>
 #include <locale>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -58,6 +59,18 @@ wstring to_wstring(const wchar_t* str)
     return wstring(str);
 }
 
+string to_string(const wstring& wcs)
+{
+    vector<char> mbs(wcs.size() * MB_CUR_MAX + 1);
+#ifdef _MSC_VER
+    size_t returnValue;
+    wcstombs_s(&returnValue, &mbs.at(0), mbs.size(), wcs.c_str(), _TRUNCATE);
+#else
+    wcstombs(&mbs.at(0), wcs.c_str(), mbs.size());
+#endif    
+    return &mbs.at(0);
+}
+
 #ifdef _WINDOWS
 int _tmain(int argc, TCHAR** argv)
 #else
@@ -80,6 +93,7 @@ int main(int argc, char** argv)
 #endif
         wcout << L"typename(argv)=" << typeid(argv).name() << endl;
         for (int i = 0; i < argc; i++) {
+            wcout << L"----------" << endl;
             wcout << L"argv[" << i << L"]:\t";
             dump(argv[i]);
             wcout << endl;
@@ -87,6 +101,27 @@ int main(int argc, char** argv)
             wcout << L"wchar_t:\t";
             dump(arg.c_str());
             wcout << endl;
+            //
+            vector<pair<string, wstring>> localeAndHeaders = {
+                { "ja_JP.utf8", L"UTF-8:\t\t" },
+#ifdef _WINDOWS
+                { ".932", L"SJIS(CP932):\t" },
+                { ".20932", L"EUC(CP20932):\t" },
+#endif
+            };
+            for (const auto& iLocaleAndHeaders: localeAndHeaders) {
+                wcout << iLocaleAndHeaders.second;
+                try {
+                    locale::global(locale(iLocaleAndHeaders.first));
+                    string arg_mb = to_string(arg);
+                    locale::global(locale(""));
+                    dump(arg_mb.c_str());
+                }
+                catch (const exception& x) {
+                    wcout << L"Exception: " << x.what();
+                }
+                wcout << endl;
+            }
         }
     }
     catch (const exception& x) {
