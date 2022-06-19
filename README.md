@@ -4,10 +4,11 @@ Windows, Linux 両方でビルト・実行できるキャラクタベースの C
 
 ## 目的
 
-昔作った Lisp インタプリタを、Windows 32bit/64bit, Linux 両方で
-UNICODE 対応で動かしたいので、その方法を確立する。
+昔作った Lisp インタプリタを、Windows, Linux 両方で動かしたいので、
+その方法を確立する。
+Windows では 32bit/64bit 両方, Shift-JIS/UNICODE 両方とする。
 それは以前は MS-DOS, MacOS, UNIX, VOS3 で動いていたが、
-現在は 32bit Windows の GUI アプリケーションの組み込み用になっている。
+現在は 32bit Windows Shift-JIS GUI アプリケーションの組み込み用になっている。
 
 
 ## 対象
@@ -21,14 +22,30 @@ UNICODE 対応で動かしたいので、その方法を確立する。
 * 双方で CMake, Boost を使用
 
 
-## 実際に使用しているバージョン
+### 実際に使用しているバージョン
 
 * Windows: Windows 10, Visual Sutdio 2019 (14.2), CMake 3.19.2, Boost 1.74,
 
 * Linux: Debian GNU/Linux 10(buster), gcc 8.3, CMake 3.13.4, Boost 1.73, ncurses 6.1
 
 
-## 項目
+## ビルド・実行方法
+
+### ビルド方法
+
+* Windows では vcvarsall.bat のあるディレクトリを環境変数 VC142 に設定しておき、mak.bat を実行する
+
+* Linux では、初回は mkdir build; pushd build; cmake ..; make; popd で行う。以降は cmake .. を抜かしてよい。alias も定義する。
+
+
+### 実行方法
+
+* Windows では exe.bat に 64 u hello とテスト用の任意の引数を指定する。64 と u は省略可能である。
+
+* Linux ではシェルスクリプト exe に hello とテスト用の任意の引数を指定する
+
+
+## 検討項目
 
 ### ソースコードのエンコーディング(完了)
 
