@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-19 14:05:46 neige>
+// Time-stamp: <2022-06-19 14:09:49 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -30,6 +30,13 @@ void dump(const char* str)
               << (unsigned int)(unsigned char)(*str++);
 }
 
+void dump(const wchar_t* str)
+{
+    while (*str) 
+        wcout << L' ' << setw(sizeof(wchar_t) * 2) << setfill(L'0') << hex
+              << (unsigned int)(wchar_t)(*str++);
+}
+
 #ifdef _WINDOWS
 int _tmain(int argc, TCHAR** argv)
 #else
@@ -51,12 +58,10 @@ int main(int argc, char** argv)
         wcout << L"_UNICODE が定義されています。" << endl;
 #endif
         wcout << L"typename(argv)=" << typeid(argv).name() << endl;
-        if (typeid(argv) == typeid(char**)) {
-            for (int i = 0; i < argc; i++) {
-                wcout << L"argv[" << i << L"]:";
-                dump(argv[i]);
-                wcout << endl;
-            }
+        for (int i = 0; i < argc; i++) {
+            wcout << L"argv[" << i << L"]:";
+            dump(argv[i]);
+            wcout << endl;
         }
     }
     catch (const exception& x) {
