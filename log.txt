@@ -32,7 +32,8 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
     * Linux では main にて char** argv で、環境変数 LANG で指定された
       エンコードで受け取れる。
   w argv を、wchar_t, UTF-8, Shift-JIS, EUC-JP などに変換してダンプ
-    w Linux で wchar_t に変換してダンプ
+    v Linux で wchar_t に変換してダンプ
+    v Windows では mbstowcs に代わり mbstowcs_s を使用
 
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している

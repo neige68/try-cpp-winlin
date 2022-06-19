@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-19 16:49:08 neige>
+// Time-stamp: <2022-06-19 17:28:11 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -44,7 +44,12 @@ void dump(const wchar_t* str)
 wstring to_wstring(const char* str)
 {
     vector<wchar_t> buf(strlen(str) + 1);
+#ifdef _MSC_VER
+    size_t returnValue;
+    mbstowcs_s(&returnValue, &buf.at(0), buf.size(), str, _TRUNCATE);
+#else   
     mbstowcs(&buf.at(0), str, buf.size());
+#endif   
     return wstring(&buf.at(0));
 }
 
