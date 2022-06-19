@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-19 18:19:25 neige>
+// Time-stamp: <2022-06-19 18:29:44 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -107,6 +107,8 @@ int main(int argc, char** argv)
 #ifdef _WINDOWS
                 { ".932", L"SJIS(CP932):\t" },
                 { ".20932", L"EUC(CP20932):\t" },
+#else
+                { "ja_JP.eucjp", L"EUC-JP:\t\t" },
 #endif
             };
             for (const auto& iLocaleAndHeaders: localeAndHeaders) {

@@ -31,10 +31,11 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
       LANG=ja_JP.eucjp でできる。
     * Linux では main にて char** argv で、環境変数 LANG で指定された
       エンコードで受け取れる。
-  w argv を、wchar_t, UTF-8, Shift-JIS, EUC-JP などに変換して16進数出力
+  v argv を、wchar_t, UTF-8, Shift-JIS, EUC-JP などに変換して16進数出力
     v Linux で wchar_t に変換して16進数出力
     v VC では mbstowcs に代わり mbstowcs_s を使用
-    w Windows で UTF-8, Shift-JIS(CP932), EUC-JP(CP20932) に変換して16進数出力
+    v Windows で UTF-8, Shift-JIS(CP932), EUC-JP(CP20932) に変換して16進数出力
+    v Linux で UTF-8, EUC-JP に変換して16進数出力
 
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している
