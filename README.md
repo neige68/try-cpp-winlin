@@ -23,7 +23,7 @@ UNICODE 対応で 64bit でも動かしたいので、その基盤を整える�
 UTF-8 とする。
 VC ではコンパイルオプション /utf-8 オプションが必要となるので、
 CMakeLists.txt にて、CMAKE_GENERATOR に "Visual Studio" が含まれるときに、
-CMAKE_CXX_FLAGS それをに追加する。
+CMAKE_CXX_FLAGS にそれを追加する。
 
 
 ## ビルドと実行のコマンドを共通化したい
