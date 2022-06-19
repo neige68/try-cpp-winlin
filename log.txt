@@ -49,10 +49,7 @@ w ターミナルの行の長さ
     * ライブラリ: CMakeLists.txt にて target_link_libraries で ncurses
       を指定
     * コード: initscr(); してから変数 COLS を読みだす。
-  * Windows
-    * cygwin の tput を使って取得できるが、Emacs の shellで実行してい
-      る cmd.exe から呼び出すとエラー unknown terminal "emacs" になる。
-      set TERM=dump とすると 80 が返るようになる。
+  v Windows
     * Windows API では GetConsoleScreenBufferInfo で取得できるが、
       Emacsの shell から起動したプログラムではエラー「ハンドルが無効で
       す。」となる。
