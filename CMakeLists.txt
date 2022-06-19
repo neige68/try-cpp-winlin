@@ -1,5 +1,5 @@
 # <CMakeLists.txt> -*- coding: utf-8 -*-
-# Time-stamp: <2022-06-18 21:40:40 neige>
+# Time-stamp: <2022-06-20 00:23:17 neige>
 #
 # Project try-cpp-winlin
 # Copyright (C) 2022 neige
@@ -49,6 +49,11 @@ endif()
 
 #add_compile_definitions(_CRT_RAND_S)
 
-add_executable(hello hello.cpp)
+add_executable(hello hello.cpp termcols.cpp)
+
+if (CMAKE_GENERATOR MATCHES "Visual Studio")
+else()
+    target_link_libraries(hello ncurses)
+endif()
 
 # end of <CMakeLists.txt>

@@ -37,6 +37,29 @@ w hello.cpp - hello, world を書いてビルド・実行まで。
     v Windows で UTF-8, Shift-JIS(CP932), EUC-JP(CP20932) に変換して16進数出力
     v Linux で UTF-8, EUC-JP に変換して16進数出力
 
+w ターミナルの行の長さ
+  * "termcols.h" GetTerminalCols
+  v Linux
+    * 大抵コマンド tput cols で取得できる。これは ncurses というライブ
+      ラリでできている。 ncurses を使う。
+    * sudo apt install lib32ncurses-dev
+    * sudo apt install ncurses-doc
+    * man ncurses
+    * ヘッダ: ソースから #include <curses.h> 
+    * ライブラリ: CMakeLists.txt にて target_link_libraries で ncurses
+      を指定
+    * コード: initscr(); してから変数 COLS を読みだす。
+  * Windows
+    * cygwin の tput を使って取得できるが、Emacs の shellで実行してい
+      る cmd.exe から呼び出すとエラー unknown terminal "emacs" になる。
+      set TERM=dump とすると 80 が返るようになる。
+    * Windows API では GetConsoleScreenBufferInfo で取得できるが、
+      Emacsの shell から起動したプログラムではエラー「ハンドルが無効で
+      す。」となる。
+    * Emacs の shell-mode では、環境変数 TERM=emacs となり、環境変数
+      TERMCAP に emacs:co#115:tc=unknown: のようにシェル起動時のEmacs
+      のウィンドウの幅が記憶されている。同期しているわけではない。
+
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している
   * Windows や Linux のアカウント名は neige

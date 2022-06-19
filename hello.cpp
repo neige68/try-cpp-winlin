@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-19 18:29:44 neige>
+// Time-stamp: <2022-06-20 00:22:10 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -9,6 +9,9 @@
 //
 // Compiler: gcc 8.3, VC 14.2
 //
+
+// mine
+#include "termcols.h"
 
 // std c++
 #include <cstdlib>
@@ -81,6 +84,7 @@ int main(int argc, char** argv)
         locale::global(locale(""));
         wcout << L"Hello, world." << endl;
         wcout << L"みなさんこんにちは。" << endl;
+        wcout << L"ターミナルの行の長さ: " << GetTerminalCols() << endl;
 #if defined(_WIN64)
         wcout << L"_WIN64 が定義されています。" << endl;
 #endif
