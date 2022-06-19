@@ -35,7 +35,7 @@ Windows では 32bit/64bit 両方, Shift-JIS/UNICODE 両方とする。
 
 * Windows では vcvarsall.bat のあるディレクトリを環境変数 VC142 に設定しておき、mak.bat を実行する
 
-* Linux では、初回は mkdir build; pushd build; cmake ..; make; popd で行う。以降は cmake .. を抜かしてよい。alias も定義する。
+* Linux では、初回は mkdir build; pushd build; cmake ..; make; popd で行う。以降は mkdir と cmake を抜かしてよい。alias も定義する。
 
 
 ### 実行方法
