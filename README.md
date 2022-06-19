@@ -45,15 +45,25 @@ Emacs の M-x compile で mak を実行するには、
 bash のインタラクティブシェルを起動するよう指示する。
 
 
-## ワイド文字、マルチバイト文字変換
-
-C++ 標準ライブラリの std::mbstowcs, std::wcstombs でできると思われる。
-
-
 ## コマンドライン引数
 
 Windows では _tmain で TCHAR** argv で受け取る。
 Linux では main にて char** argv で、環境変数 LANG で指定されたエンコードで受け取る。
+
+
+## ワイド文字、マルチバイト文字変換
+
+C++ 標準ライブラリの std::mbstowcs, std::wcstombs で行う。
+VC ではセキュリティ強化版 mbstowcs_s, wcstombs_s で行う。
+
+プログラムの最初に std::locale::global(std::locale("")); を行い、
+グローバルロケールをデフォルトロケールに設定すると、
+素直に変換できる。
+
+Windows のワイド文字は UTF-16 であり、
+Linux のワイド文字は UTF-32 であるとのことなので、
+ワイド文字のままデータ交換はできない。
+UTF-8 を介すのが望ましい。
 
 
 ## 例外メッセージ
