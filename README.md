@@ -24,9 +24,9 @@ Windows では 32bit/64bit 両方, Shift-JIS/UNICODE 両方とする。
 
 ### 実際に使用しているバージョン
 
-* Windows: Windows 10, Visual Sutdio 2019 (14.2), CMake 3.19.2, Boost 1.74,
+* Windows: Windows 10, Visual Sutdio 2019 (14.2), CMake 3.19.2, Boost 1.75,
 
-* Linux: Debian GNU/Linux 10(buster), gcc 8.3, CMake 3.13.4, Boost 1.73, ncurses 6.1
+* Linux: Debian GNU/Linux 10(buster), gcc 8.3, CMake 3.13.4, Boost 1.74, ncurses 6.1
 
 
 ## ビルド・実行方法
