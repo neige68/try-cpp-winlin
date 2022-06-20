@@ -1,6 +1,6 @@
 @rem <mak.bat> -*- coding: cp932-dos -*-
 @echo off
-rem Time-stamp: <2022-06-18 22:10:08 neige>
+rem Time-stamp: <2022-06-20 23:01:02 neige>
 rem
 rem Project try-cpp-winlin
 rem Copyright (C) 2022 neige68
@@ -37,12 +37,11 @@ if not exist ALL_BUILD.vcxproj set @exec_cmake=t
 if not "%@exec_cmake%"=="" cmake -A Win32 ..
 msbuild ALL_BUILD.vcxproj /p:Configuration=Debug /m
 echo INFO: mak.bat: msbuild Debug Done.
-if errorlevel 1 goto err
+if errorlevel 1 goto err_pop2
 msbuild ALL_BUILD.vcxproj /p:Configuration=Release /m
 echo INFO: mak.bat: msbuild Release Done.
-:err
+if errorlevel 1 goto err_pop2
 popd
-if errorlevel 1 goto err_pop1
 
 rem ------------------------------------------------------------
 rem buildu
@@ -52,12 +51,11 @@ if not exist ALL_BUILD.vcxproj set @exec_cmake=t
 if not "%@exec_cmake%"=="" cmake -A Win32 -D UNICODE=1 ..
 msbuild ALL_BUILD.vcxproj /p:Configuration=Debug /m
 echo INFO: mak.bat: msbuild Debug Done.
-if errorlevel 1 goto err
+if errorlevel 1 goto err_pop2
 msbuild ALL_BUILD.vcxproj /p:Configuration=Release /m
 echo INFO: mak.bat: msbuild Release Done.
-:err
+if errorlevel 1 goto err_pop2
 popd
-if errorlevel 1 goto err_pop1
 
 rem ------------------------------------------------------------
 rem build64
@@ -67,12 +65,11 @@ if not exist ALL_BUILD.vcxproj set @exec_cmake=t
 if not "%@exec_cmake%"=="" cmake -A x64 ..
 msbuild ALL_BUILD.vcxproj /p:Configuration=Debug /m
 echo INFO: mak.bat: msbuild Debug Done.
-if errorlevel 1 goto err
+if errorlevel 1 goto err_pop2
 msbuild ALL_BUILD.vcxproj /p:Configuration=Release /m
 echo INFO: mak.bat: msbuild Release Done.
-:err
+if errorlevel 1 goto err_pop2
 popd
-if errorlevel 1 goto err_pop1
 
 rem ------------------------------------------------------------
 rem build64u
@@ -82,14 +79,15 @@ if not exist ALL_BUILD.vcxproj set @exec_cmake=t
 if not "%@exec_cmake%"=="" cmake -A x64 -D UNICODE=1 ..
 msbuild ALL_BUILD.vcxproj /p:Configuration=Debug /m
 echo INFO: mak.bat: msbuild Debug Done.
-if errorlevel 1 goto err
+if errorlevel 1 goto err_pop2
 msbuild ALL_BUILD.vcxproj /p:Configuration=Release /m
 echo INFO: mak.bat: msbuild Release Done.
-:err
+if errorlevel 1 goto err_pop2
 popd
-if errorlevel 1 goto err_pop1
 
 rem ------------------------------------------------------------
+:err_pop2
+popd
 :err_pop1
 popd
 if errorlevel 1 echo ÉGÉâÅ[Ç™Ç†ÇËÇ‹Ç∑.
