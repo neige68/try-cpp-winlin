@@ -1,5 +1,5 @@
 # <CMakeLists.txt> -*- coding: utf-8 -*-
-# Time-stamp: <2022-06-20 23:40:44 neige>
+# Time-stamp: <2022-06-21 01:19:59 neige>
 #
 # Project try-cpp-winlin
 # Copyright (C) 2022 neige
@@ -29,31 +29,18 @@ link_directories(${Boost_LIBRARY_DIRS})
 
 #------------------------------------------------------------
 
-# C++17 使用
-#set(CMAKE_CXX_STANDARD "17")
-
-# /MP: マルチプロセス
-# /wd4068: warning C4068: 不明なプラグマがありました。をオフに設定
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /wd4068")
-
 if (CMAKE_GENERATOR MATCHES "Visual Studio")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
+    # /MP: マルチプロセスでコンパイル
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8 /MP")
 endif()
-
-# マップファイル生成
-#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /MAP")
-#set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /MAP")
 
 if (${UNICODE})
     add_compile_definitions(UNICODE;_UNICODE)
 endif()
 
-#add_compile_definitions(_CRT_RAND_S)
-
 add_executable(hello hello.cpp termcols.cpp)
 
-if (CMAKE_GENERATOR MATCHES "Visual Studio")
-else()
+if (UNIX)
     target_link_libraries(hello ncurses)
 endif()
 
