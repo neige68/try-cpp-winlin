@@ -1,5 +1,5 @@
 # <CMakeLists.txt> -*- coding: utf-8 -*-
-# Time-stamp: <2022-06-21 01:19:59 neige>
+# Time-stamp: <2022-06-22 04:12:20 neige>
 #
 # Project try-cpp-winlin
 # Copyright (C) 2022 neige
@@ -19,8 +19,7 @@ project(try-cpp-winlin CXX)
 
 # BOOST を探す
 # Windows で C: ドライブ以外から探すには 環境変数 CMAKE_PREFIX_PATH の設定が必要
-# find_package(Boost 1.74 REQUIRED COMPONENTS filesystem)
-find_package(Boost 1.74 REQUIRED)
+find_package(Boost 1.74 REQUIRED COMPONENTS program_options)
 message(STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}")
 message(STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}")
 
@@ -43,5 +42,7 @@ add_executable(hello hello.cpp termcols.cpp)
 if (UNIX)
     target_link_libraries(hello ncurses)
 endif()
+
+add_executable(locale locale.cpp)
 
 # end of <CMakeLists.txt>

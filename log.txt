@@ -57,6 +57,30 @@ v ターミナルの行の長さ
       TERMCAP に emacs:co#115:tc=unknown: のようにシェル起動時のEmacs
       のウィンドウの幅が記憶されている。同期しているわけではない。
 
+w ロケールのテスト
+  * locale.cpp
+  * 最近使用していた std::locale::global(std::locale("",
+    std::locale::ctype)); は間違い。ctype だけデフォルトロケールのを使
+    用したいなら
+    std::locale::global(std::locale(std::locale::classic(), "",
+    std::locale::ctype)
+  * 現在のグローバルロケールを取得: auto lc = std::locale();
+  * グローバルロケールのセット: std::locale::global(lc);
+  * ロケール other からファセットカテゴリ cat を std_name のロケールで
+    置き換えたロケール: std::locale(other, std_name, cat)
+  * wcout など構築済みのストリームは imbue でロケールの変更が必要
+  * デフォルトロケールでは数値の3桁ごとにコンマが入る。16進数でも入る
+    が、fill の '0' には入らないため、setw(10) で 0x1a2b を出力すると
+    "000001,a2b" となる。
+  v Windows 動作確認
+
+o boost::program_options の使用
+  * 1.74 でも unicode サポートはされている
+  * po.cpp
+
+o boost::spirit::x3 の使用
+  * 1.74 から 1.78 で細かく修正されている
+
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している
   * Windows や Linux のアカウント名は neige
