@@ -57,7 +57,7 @@ v ターミナルの行の長さ
       TERMCAP に emacs:co#115:tc=unknown: のようにシェル起動時のEmacs
       のウィンドウの幅が記憶されている。同期しているわけではない。
 
-w ロケールのテスト
+v ロケールのテスト
   * locale.cpp
   * 最近使用していた std::locale::global(std::locale("",
     std::locale::ctype)); は間違い。ctype だけデフォルトロケールのを使
