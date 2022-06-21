@@ -1,6 +1,6 @@
 // <hello.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-20 00:22:10 neige>
+// Time-stamp: <2022-06-22 03:31:59 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige
@@ -81,7 +81,8 @@ int main(int argc, char** argv)
 #endif
 {
     try {
-        locale::global(locale(""));
+        locale::global(locale(locale::classic(), "", locale::ctype));
+        wcout.imbue(locale());
         wcout << L"Hello, world." << endl;
         wcout << L"みなさんこんにちは。" << endl;
         wcout << L"ターミナルの行の長さ: " << GetTerminalCols() << endl;
