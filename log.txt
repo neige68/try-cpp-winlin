@@ -73,6 +73,9 @@ w ロケールのテスト
     が、fill の '0' には入らないため、setw(10) で 0x1a2b を出力すると
     "000001,a2b" となる。
   v Windows 動作確認
+  v Linux で動作するよう変更
+    * Windows ではロケールの名前に ".utf-8" が指定できるが Linux では
+      "ja_JP.UTF-8" でないとエラーとなる
 
 o boost::program_options の使用
   * 1.74 でも unicode サポートはされている

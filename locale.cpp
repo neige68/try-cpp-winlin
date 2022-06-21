@@ -1,6 +1,6 @@
 // <locale.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-22 04:11:20 neige>
+// Time-stamp: <2022-06-22 04:18:58 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige68
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
         output(L"imbue する前の wcout は クラシックロケール のまま");
         wcout.imbue(locale(""));
         output(L"デフォルトロケール");
-        wcout.imbue(locale(locale::classic(), ".utf-8", locale::ctype));
+        wcout.imbue(locale(locale::classic(), "ja_JP.UTF-8", locale::ctype));
         output(L"クラシックロケールで ctype は utf-8");
         wcout.imbue(locale(locale::classic(), "", locale::ctype));
         output(L"クラシックロケールで ctype はデフォルトロケールのもの");
