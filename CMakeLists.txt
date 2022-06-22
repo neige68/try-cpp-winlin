@@ -1,5 +1,5 @@
 # <CMakeLists.txt> -*- coding: utf-8 -*-
-# Time-stamp: <2022-06-22 04:12:20 neige>
+# Time-stamp: <2022-06-22 11:17:05 neige>
 #
 # Project try-cpp-winlin
 # Copyright (C) 2022 neige
@@ -29,8 +29,9 @@ link_directories(${Boost_LIBRARY_DIRS})
 #------------------------------------------------------------
 
 if (CMAKE_GENERATOR MATCHES "Visual Studio")
+    # /source-charset: ソースコードの優先する文字集合の指定
     # /MP: マルチプロセスでコンパイル
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8 /MP")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /source-charset:UTF-8 /MP")
 endif()
 
 if (${UNICODE})
@@ -44,5 +45,7 @@ if (UNIX)
 endif()
 
 add_executable(locale locale.cpp)
+
+add_executable(po po.cpp)
 
 # end of <CMakeLists.txt>

@@ -77,12 +77,40 @@ v ロケールのテスト
     * Windows ではロケールの名前に ".utf-8" が指定できるが Linux では
       "ja_JP.UTF-8" でないとエラーとなる
 
-o boost::program_options の使用
+w boost::program_options の使用
   * 1.74 でも unicode サポートはされている
   * po.cpp
+  v オプションを cout に送ると utf-8 になる条件は? いままで他で使った
+    時は cp932 だったと思う
+    * 何故かソースコードエンコーディングとコンパイルオプション /utf-8
+      に依存している
+    * コンパイルオプション /utf-8 はコンパイルオプション
+      /execution-charset:UTF-8 を含むショートカットであり、実行時の文
+      字セットも UTF-8 に変更される。
+    * ソースコードの文字セットを指定したいだけなら
+      /source-charset:UTF-8 を使用する。
+  * wchar_t に対する program_options の使用方法
+    * parse_command_line はそのまま使える(関数オーバロードによる)。
+      command_line_parser はそれに代わり wcommand_line_parser を使用す
+      る。あるいは main 関数の代用品(wmain, _tmain)の第2引数 argv の型
+      が char*[] か wchar_t*[] かに対応して、argv_char_t を char か
+      wchar_t と定義し、basic_command_line_parser<argv_char_t> を使用
+      する。
+    * string に代わり wstring を使用する value は代わりに wvalue を使
+      用する。たとえば value<vector<string>>() に代わり
+      wvalue<vector<wstring>>() を使用する。
+    * default_value に const wchar_t* 型で文字列を渡すときは、const
+      char* 型でそれと同じ文字列を第2引数に渡す。たとえば
+      default_value("ほげ") に代わり default_value(L"ほげ", "ほげ") と
+      する。
+  v Windows 動作確認
 
 o boost::spirit::x3 の使用
   * 1.74 から 1.78 で細かく修正されている
+
+o boost::nowide の使用
+  * ファイル名に cp932 外の文字が含まれている場合に、直接 Windows API
+    を使用しないでオープンできるかも
 
 o Copyright neige と neige68 が混在している。
   * neige68 は github のアカウント名、名前としては neige で登録している
