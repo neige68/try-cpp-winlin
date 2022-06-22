@@ -105,7 +105,8 @@ w boost::program_options の使用
       する。
   v Windows 動作確認
   v linux リンクエラー
-    * target_link_libraries(po boost_program_options) が必要
+    * Linux では target_link_libraries(po boost_program_options) が必
+      要、Windows では不要
   v linux では wcout を使用したら cout は使用できない。すべてワイド文
     字に変換して wcout に出力すること。wcerr, cerr に関しても、wclog,
     clog に関しても同じ。
