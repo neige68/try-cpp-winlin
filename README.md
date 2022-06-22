@@ -46,10 +46,12 @@ Windows では 32bit/64bit 両方, Shift-JIS/UNICODE 両方とする。
 
 * 任意の引数の例: 🦆鴨かもｶﾓ
 
+* hello 以外のプログラムも同様に指定して実行
+
 
 ## 検討項目
 
-### ソースコードのエンコーディング(完了)
+### ソースコードのエンコーディング
 
 UTF-8 とする。
 VC ではコンパイルオプション /utf-8 オプションが必要となるので、
@@ -57,7 +59,7 @@ CMakeLists.txt にて、CMAKE_GENERATOR に "Visual Studio" が含まれると�
 CMAKE_CXX_FLAGS にそれを追加する。
 
 
-### ビルドと実行のコマンドを共通化(完了)
+### ビルドと実行のコマンドを共通化
 
 * ビルドのコマンドは mak, 実行のコマンドは exe とする
 
@@ -76,20 +78,21 @@ Emacs の M-x compile で mak を実行するには、
 bash のインタラクティブシェルを起動するよう指示する。
 
 
-### コマンドライン引数の処理(完了)
+### コマンドライン引数の処理
 
 Windows では _tmain で TCHAR** argv で受け取る。
 Linux では main にて char** argv で、環境変数 LANG で指定されたエンコードで受け取る。
 
 
-### ワイド文字、マルチバイト文字変換(完了)
+### ワイド文字、マルチバイト文字変換
 
+とりあえず codecvt は非推奨なので使用せず、グローバルロケールを設定し、
 C++ 標準ライブラリの std::mbstowcs, std::wcstombs で行う。
 VC ではセキュリティ強化版 mbstowcs_s, wcstombs_s で行う。
 
-プログラムの最初に std::locale::global(std::locale("")); を行い、
-グローバルロケールをデフォルトロケールに設定すると、
-素直に変換できる。
+プログラムの最初に
+std::locale::global(std::locale(std::locale::classic(), "", std::locale::ctype));
+を行い、グローバルロケールの ctype をデフォルトロケールのものに設定すると、素直に変換できる。
 
 const char* であろうと const wchar_t* であろうと、
 オーバロードした to_wstring 関数で std::wstring に変換して処理できるようにする。
@@ -100,7 +103,13 @@ Linux のワイド文字は UTF-32 であるとのことなので、
 UTF-8 を介すのが望ましい。
 
 
-### ターミナルの行の長さの取得(完了)
+### 標準入出力
+
+wcout, wcerr, wclog と cout, cerr, clog はそれぞれ混在使用できない。
+一貫して前者を使用すること。
+
+
+### ターミナルの行の長さの取得
 
 pretty-print に必要なので取得したい。
 
@@ -110,6 +119,24 @@ Windows では API GetConsoleScreenBufferInfo で取得できる。
 
 Windows の Emacs の shell から起動したプログラムではエラーとなるが、
 環境変数にシェル起動時の桁数が設定されているのでそれを取得する。
+
+
+### boost::program_options を wchar_t に対して使用
+
+parse_command_line はそのまま使える(関数オーバロードによる)。
+command_line_parser はそれに代わり wcommand_line_parser を使用する。
+あるいは main 関数の代用品(wmain, _tmain)の第2引数 argv の型が char*[] か wchar_t*[] かに対応して、
+argv_char_t を char か wchar_t と定義し、
+basic_command_line_parser<argv_char_t> を使用する。
+
+string に代わり wstring を使用する value は代わりに wvalue を使用する。
+たとえば value<vector<string>>() に代わり wvalue<vector<wstring>>() を使用する。
+
+default_value に const wchar_t* 型で文字列を渡すときは、
+const char* 型でそれと同じ文字列を第2引数に渡す。
+たとえば default_value("ほげ") に代わり default_value(L"ほげ", "ほげ") とする。
+
+wchar_t とは関係ないが Linux でのみ CMakeLists.txt にて boost_program_options のリンク指定が必要。
 
 
 ### 例外メッセージ(未着手)
