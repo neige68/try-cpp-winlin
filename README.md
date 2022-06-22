@@ -136,6 +136,9 @@ default_value に const wchar_t* 型で文字列を渡すときは、
 const char* 型でそれと同じ文字列を第2引数に渡す。
 たとえば default_value("ほげ") に代わり default_value(L"ほげ", "ほげ") とする。
 
+ヘルプメッセージとして options_description インスタンスを wcout へストリーム出力したいことがあるが、
+直接出力はできないので wstring に変換してから出力する。
+
 wchar_t とは関係ないが Linux でのみ CMakeLists.txt にて boost_program_options のリンク指定が必要。
 
 
