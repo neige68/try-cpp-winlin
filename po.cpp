@@ -1,6 +1,6 @@
 // <po.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-22 23:18:13 neige>
+// Time-stamp: <2022-06-23 00:00:12 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige68
@@ -87,6 +87,14 @@ wstring utf8_to_wstring(const string& str)
 }
 
 template <class X>
+wstring stream_to_wstring(const X& x)
+{
+    ostringstream oss;
+    oss << x;
+    return to_wstring(oss.str());
+}
+
+template <class X>
 wstring utf8_stream_to_wstring(const X& x)
 {
     ostringstream oss;
@@ -131,7 +139,7 @@ int main(int argc, char* argv[])
         store(po::basic_command_line_parser<argv_char_t>(argc, argv).options(od_all).positional(pod).run(), vm);
         po::notify(vm);
         if (vm.count("help")) {
-            wcout << utf8_stream_to_wstring(od) << endl;
+            wcout << stream_to_wstring(od) << endl;
             return 0;
         }
         wcout << L"string=" << to_wstring(vm["string"].as<wstring>()) << endl;
