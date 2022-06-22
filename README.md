@@ -54,7 +54,7 @@ Windows では 32bit/64bit 両方, Shift-JIS/UNICODE 両方とする。
 ### ソースコードのエンコーディング
 
 UTF-8 とする。
-VC ではコンパイルオプション /utf-8 オプションが必要となるので、
+VC ではコンパイルオプション /source-charset:UTF-8 が必要となるので、
 CMakeLists.txt にて、CMAKE_GENERATOR に "Visual Studio" が含まれるときに、
 CMAKE_CXX_FLAGS にそれを追加する。
 
