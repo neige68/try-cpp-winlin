@@ -104,7 +104,9 @@ w boost::program_options の使用
       default_value("ほげ") に代わり default_value(L"ほげ", "ほげ") と
       する。
   v Windows 動作確認
-
+  v linux リンクエラー
+    * target_link_libraries(po boost_program_options) が必要
+    
 o boost::spirit::x3 の使用
   * 1.74 から 1.78 で細かく修正されている
 

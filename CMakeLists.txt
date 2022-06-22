@@ -1,5 +1,5 @@
 # <CMakeLists.txt> -*- coding: utf-8 -*-
-# Time-stamp: <2022-06-22 11:17:05 neige>
+# Time-stamp: <2022-06-22 23:21:35 neige>
 #
 # Project try-cpp-winlin
 # Copyright (C) 2022 neige
@@ -47,5 +47,6 @@ endif()
 add_executable(locale locale.cpp)
 
 add_executable(po po.cpp)
+target_link_libraries(po boost_program_options)
 
 # end of <CMakeLists.txt>
