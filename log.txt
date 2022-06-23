@@ -114,12 +114,11 @@ v boost::program_options の使用テスト
 x std::codecvt<wchar_t, char, std::mbstate_t> は使えるんじゃないの
   * codecnv は unicode の変換のみらしい
 
-c "" はデフォルトロケールじゃなくてネイティブロケール
+v "" はデフォルトロケールじゃなくてネイティブロケール
   * README.md を修正
 
-o wcout, wcerr, wclog に設定されているロケールの ctype はクラシックロ
-  ケールのものかネイティブロケールのものか
-  * imbue は、グローバルロケールの ctype で良いのなら不要なのでは?
+v locale.cpp グローバルロケール変更前に wcout に出力すると何も出力され
+  なくなる
     
 o boost::spirit::x3 の使用
   * 1.74 から 1.78 で細かく修正されている
