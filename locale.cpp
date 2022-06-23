@@ -1,6 +1,6 @@
 // <locale.cpp> -*- coding: utf-8 -*-
 //
-// Time-stamp: <2022-06-23 20:04:32 neige>
+// Time-stamp: <2022-06-24 00:56:16 neige>
 //
 // Project try-cpp-winlin
 // Copyright (C) 2022 neige68
@@ -11,6 +11,7 @@
 //
 
 // std c++
+#include <cstring>
 #include <exception>
 #include <iomanip>
 #include <iostream>
