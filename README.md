@@ -86,13 +86,13 @@ Linux では main にて char** argv で、環境変数 LANG で指定された�
 
 ### ワイド文字、マルチバイト文字変換
 
-とりあえず codecvt は非推奨なので使用せず、グローバルロケールを設定し、
+グローバルロケールを設定し、
 C++ 標準ライブラリの std::mbstowcs, std::wcstombs で行う。
 VC ではセキュリティ強化版 mbstowcs_s, wcstombs_s で行う。
 
 プログラムの最初に
 std::locale::global(std::locale(std::locale::classic(), "", std::locale::ctype));
-を行い、グローバルロケールの ctype をデフォルトロケールのものに設定すると、素直に変換できる。
+を行い、グローバルロケールの ctype をネイティブロケールのものに設定すると、素直に変換できる。
 
 const char* であろうと const wchar_t* であろうと、
 オーバロードした to_wstring 関数で std::wstring に変換して処理できるようにする。
