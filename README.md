@@ -146,5 +146,5 @@ wchar_t とは関係ないが Linux でのみ CMakeLists.txt にて boost_progra
 
 C++ 標準ライブラリの std::exception のメッセージは std::string になっている。
 Boost Spirit X3 では wstring を UTF-8 決め打ちで string に変換していた記憶がある。
-そういうことがあると Windows (Shift-JIS) では
-UTF-8 と Shift-JIS が混在することにならないか危惧している。
+そういうことがあると Windows (Shift-JIS) では UTF-8 と Shift-JIS の string が混在することになる。
+最終的に出力するときに、コードを判定し、決定できなければ両方の解釈で出力する必要がある。
