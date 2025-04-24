@@ -124,6 +124,7 @@ o boost::spirit::x3 の使用
   * 1.74 から 1.78 で細かく修正されている
 
 o boost::nowide の使用
+  * UTF-8 でファイルオープンしたりするライブラリ
   * ファイル名に cp932 外の文字が含まれている場合に、直接 Windows API
     を使用しないでオープンできるかも
 
@@ -144,8 +145,8 @@ o Copyright neige と neige68 が混在している。
     * .git/config
     * ~/.emacs.d/init.el での展開
 
-o (setq shell-command-switch "-ic") の設定だと、M-! などで以下のエラー
-  になる。実害は無い。
+o Linux 上の emacs で (setq shell-command-switch "-ic") の設定だと、
+  M-! などで以下のエラーになる。実害は無い。
 ----------
 bash: 端末プロセスグループを設定できません (-1): デバイスに対する不適切なioctlです
 bash: このシェルではジョブ制御が無効になっています
